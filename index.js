@@ -5,14 +5,14 @@ const todoRouter = require("./routers/todoRouter");
 require("dotenv").config();
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT ||  5000;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/todo-backend";
 
 app.use(cors());
 app.use(express.json());
-app.use("/", todoRouter);
+app.use("/todos", todoRouter);
 
-app.get("/", (req, res) => {
+app.get("/health", (req, res) => {
   res.send("Todo backend server is running");
 });
 
